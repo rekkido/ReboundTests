@@ -23,6 +23,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'io.qameta.allure' version "2.11.2"
 }
 
 android {
@@ -34,6 +35,7 @@ android {
         minSdkVersion App.minSdkVersion
         versionCode App.versionCode
         versionName "${App.versionName}"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
             useSupportLibrary true
@@ -174,4 +176,17 @@ dependencies {
     kapt Deps.Dagger.hiltCompiler
 
     coreLibraryDesugaring Deps.Android.desugaring
+
+    // Test
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0")
+    debugImplementation("androidx.compose.ui:ui-test-junit4:1.0.0")
+    androidTestImplementation("io.qameta.allure:allure-kotlin-model:2.4.0")
+    androidTestImplementation("io.qameta.allure:allure-kotlin-commons:2.4.0")
+    androidTestImplementation("io.qameta.allure:allure-kotlin-junit4:2.4.0")
+    androidTestImplementation("io.qameta.allure:allure-kotlin-android:2.4.0")
+    implementation("io.qameta.allure:allure-gradle:2.8.1")
+}
+
+allure {
+    version = '2.14.0'
 }

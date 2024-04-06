@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -177,7 +178,8 @@ fun CollapsingToolbarScope.TopBar2(
                         scaleX = titleScale,
                         scaleY = titleScale,
                         transformOrigin = TransformOrigin(0f, 0.5f)
-                    ),
+                    )
+                    .testTag("title"),
                 text = title,
                 style = ReboundTheme.typography.h6.copy(
                     fontStyle = if (italicTitle) FontStyle.Italic else FontStyle.Normal
