@@ -80,21 +80,6 @@ android {
         }
     }
     namespace 'com.ankitsuda.rebound'
-
-//    testOptions {
-//        unitTests.all {
-//            // Enable JUnit XML reports for Allure
-//            testLogging {
-//                events "passed", "skipped", "failed"
-//                outputs.upToDateWhen { false }
-//                showStandardStreams = true
-//                exceptionFormat = "full"
-//                debug {
-//                    exceptionFormat = "full"
-//                }
-//            }
-//        }
-//    }
 }
 
 repositories {
@@ -135,6 +120,7 @@ dependencies {
     implementation project(":modules:ui-exercise-category-selector")
 
     implementation Deps.Kotlin.coroutinesAndroid
+    testImplementation 'junit:junit:4.12'
     kapt Deps.Android.Lifecycle.compiler
 
     // dagger-2
