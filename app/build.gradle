@@ -23,6 +23,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'io.qameta.allure' version '2.10.0' // Allure plugin
 }
 
 android {
@@ -34,6 +35,7 @@ android {
         minSdkVersion App.minSdkVersion
         versionCode App.versionCode
         versionName "${App.versionName}"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
             useSupportLibrary true
@@ -78,11 +80,28 @@ android {
         }
     }
     namespace 'com.ankitsuda.rebound'
+
+//    testOptions {
+//        unitTests.all {
+//            // Enable JUnit XML reports for Allure
+//            testLogging {
+//                events "passed", "skipped", "failed"
+//                outputs.upToDateWhen { false }
+//                showStandardStreams = true
+//                exceptionFormat = "full"
+//                debug {
+//                    exceptionFormat = "full"
+//                }
+//            }
+//        }
+//    }
 }
+
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
 }
+
 dependencies {
     implementation project(":modules:common-ui-compose")
     implementation project(":modules:common-ui-theme")
@@ -174,4 +193,26 @@ dependencies {
     kapt Deps.Dagger.hiltCompiler
 
     coreLibraryDesugaring Deps.Android.desugaring
+
+    // TEST
+    androidTestImplementation('androidx.compose.ui:ui-test-junit4:1.4.0-alpha04')
+    androidTestImplementation('androidx.compose.ui:ui-test-manifest:1.4.0-alpha04')
+}
+
+allure {
+    autoconfigure = true
+}
+
+// Define a custom Gradle task for generating Allure report
+task generateAllureReport(type: Exec) {
+    description = 'Generates Allure report'
+    dependsOn 'connectedCheck'
+    commandLine './gradlew', 'allureReport'
+}
+
+// Add the custom task as an action to the Gradle toolbar in Android Studio
+gradle.projectsEvaluated {
+    tasks.named("generateAllureReport") {
+        group = "Allure"
+    }
 }
