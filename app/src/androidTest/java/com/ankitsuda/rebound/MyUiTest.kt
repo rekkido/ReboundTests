@@ -18,7 +18,6 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ankitsuda.rebound.ui.MainActivity
-import com.ankitsuda.rebound.ui.components.MoreItemCard
 import io.qameta.allure.Allure.step
 import io.qameta.allure.AllureId
 import io.qameta.allure.junit4.DisplayName
