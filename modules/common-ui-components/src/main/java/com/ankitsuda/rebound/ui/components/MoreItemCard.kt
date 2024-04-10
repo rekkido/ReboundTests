@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.ankitsuda.rebound.ui.theme.LocalThemeState
 import com.ankitsuda.rebound.ui.theme.ReboundTheme
@@ -36,7 +37,9 @@ fun MoreItemCard(
 ) {
     Box(modifier = modifier.clickable(onClick = onClick)) {
         Row(
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 20.dp),
+            modifier = Modifier
+                .padding(horizontal = 24.dp, vertical = 20.dp)
+                .testTag(text),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null) {

@@ -18,6 +18,7 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ankitsuda.rebound.ui.MainActivity
+import io.qameta.allure.Allure.step
 import io.qameta.allure.AllureId
 import io.qameta.allure.junit4.DisplayName
 import org.junit.Rule
@@ -33,13 +34,37 @@ class MyUiTest {
     @Test
     @AllureId("TEST-1")
     @DisplayName("Open Workout Tab")
-    fun testButton() {
-        // Your UI test code goes here
-        // Perform UI interactions and assertions
+    fun testOpenWorkoutTab() {
+        step("Open app and navigate to Workout Tab")
         composeTestRule.onNodeWithTag("WorkoutNavBar").performClick()
-        // Add assertions to verify the expected behavior
+        step("Check title is Workout")
         composeTestRule.onNodeWithTag("title")
             .assertExists()
             .assertTextEquals("Workout")
+    }
+
+    @Test
+    @AllureId("TEST-2")
+    @DisplayName("Add weight")
+    fun testAddWeight() {
+        step("Open app and navigate to More Tab")
+        composeTestRule.onNodeWithTag("MoreNavBar").performClick()
+        step("Check title is More")
+        composeTestRule.onNodeWithTag("title")
+            .assertExists()
+            .assertTextEquals("More")
+        step("Tap Measure")
+        composeTestRule.onNodeWithContentDescription("Measure").performClick()
+        step("Tap Weight")
+        composeTestRule.onNodeWithTag("Weight", useUnmergedTree = true).performClick()
+        step("Tap Plus")
+        composeTestRule.onNodeWithContentDescription("Add measurement").performClick()
+        step("Enter weight")
+        composeTestRule.onRoot().printToLog("HERE")
+        composeTestRule.onNodeWithTag("TextField").performTextInput("12")
+        step("Tap Add")
+        composeTestRule.onNodeWithTag("AddButton")
+        step("Check that weight added")
+        composeTestRule.onNodeWithTag("MeasurementValue")
     }
 }
