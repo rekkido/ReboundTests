@@ -18,6 +18,7 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ankitsuda.rebound.ui.MainActivity
+import com.ankitsuda.rebound.ui.components.MoreItemCard
 import io.qameta.allure.Allure.step
 import io.qameta.allure.AllureId
 import io.qameta.allure.junit4.DisplayName
@@ -66,5 +67,50 @@ class MyUiTest {
         composeTestRule.onNodeWithTag("AddButton")
         step("Check that weight added")
         composeTestRule.onNodeWithTag("MeasurementValue")
+    }
+
+    @Test
+    @AllureId("TEST-3")
+    @DisplayName("Verify MoreItemCard Clickable")
+    fun testMoreItemCardClickable() {
+        step("Open app and navigate to More Tab")
+        composeTestRule.onNodeWithTag("MoreNavBar").performClick()
+        step("Check title is More")
+        composeTestRule.onNodeWithTag("title")
+            .assertExists()
+            .assertTextEquals("More")
+        step("Measure is clickable")
+        composeTestRule.onNodeWithContentDescription("Measure").assertHasClickAction()
+        step("Achievements is clickable")
+        composeTestRule.onNodeWithContentDescription("Achievements").assertHasClickAction()
+        step("Personalization is clickable")
+        composeTestRule.onNodeWithContentDescription("Personalization").assertHasClickAction()
+        step("Settings is clickable")
+        composeTestRule.onNodeWithContentDescription("Settings").assertHasClickAction()
+
+    }
+
+    @Test
+    @AllureId("TEST-4")
+    @DisplayName("Verify More tab has Achievement section (Shoudl be Failled)")
+    fun testMoreItemCardText() {
+        step("Open app and navigate to More Tab")
+        composeTestRule.onNodeWithTag("MoreNavBar").performClick()
+        step("Check title is More")
+        composeTestRule.onNodeWithTag("title")
+            .assertExists()
+            .assertTextEquals("More")
+        step("Achievements is displayed")
+        composeTestRule.onNodeWithContentDescription("Achivements").assertExists()
+    }
+
+    @Test
+    @AllureId("TEST-5")
+    @DisplayName("Verify Home Screen has Stats section")
+    fun testHomeStats() {
+        step("Workouts Card exists")
+        composeTestRule.onNodeWithTag("Workouts").assertExists()
+        step("Overall Card exists")
+        composeTestRule.onNodeWithTag("Overall").assertExists()
     }
 }

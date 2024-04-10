@@ -61,6 +61,7 @@ fun MoreItemCard(
                         text = description,
                         style = ReboundTheme.typography.caption,
                         color = ReboundTheme.colors.onBackground.copy(alpha = 0.8f),
+                        modifier = Modifier.testTag("Description")
                     )
                 }
             }

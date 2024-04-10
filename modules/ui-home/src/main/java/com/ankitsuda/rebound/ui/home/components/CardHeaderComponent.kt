@@ -17,6 +17,7 @@ package com.ankitsuda.rebound.ui.home.components
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.ankitsuda.rebound.ui.theme.ReboundTheme
@@ -24,7 +25,7 @@ import com.ankitsuda.rebound.ui.theme.ReboundTheme
 @Composable
 fun CardHeaderComponent(modifier: Modifier = Modifier, text: String) {
     Text(
-        modifier = modifier,
+        modifier = modifier.testTag("Stats"),
         text = text,
         style = ReboundTheme.typography.h6.copy(
             fontSize = 16.sp,
