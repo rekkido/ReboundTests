@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -352,7 +353,9 @@ private fun BottomBar(
                 selectedContentColor = ReboundTheme.colors.primary,
                 unselectedContentColor = ReboundTheme.colors.onBackground.copy(0.4f),
                 alwaysShowLabel = labelVisible == LabelVisible.ALWAYS,
-                modifier = Modifier.navigationBarsPadding(),
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .testTag("${screen.title}NavBar"),
                 selected = isSelected,
                 onClick = {
                     // This if check gives us a "singleTop" behavior where we do not create a

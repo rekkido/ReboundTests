@@ -24,6 +24,7 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import com.ankitsuda.base.util.lighterOrDarkerColor
 import com.ankitsuda.rebound.ui.theme.LocalThemeState
 import com.ankitsuda.rebound.ui.theme.ReboundTheme
@@ -41,7 +42,9 @@ fun AppTextField(
     onValueChange: (String) -> Unit
 ) {
     TextField(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("TextField"),
         value = value,
         onValueChange = onValueChange,
         singleLine = singleLine,
